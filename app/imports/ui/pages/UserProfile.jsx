@@ -25,7 +25,7 @@ class UserProfile extends React.Component {
   renderPage() {
     return (
           <Container width="200px">
-            <div className="center">
+            <div className="centerM">
             <Grid>
               <Grid.Row>
                   <Grid.Column width={6}>
