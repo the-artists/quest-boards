@@ -1,6 +1,7 @@
 .UHGreenBG{
   background: #00512f !important;
 }
+
 .headerImage {
   background: url('/images/QuestBoard.png') no-repeat center center fixed !important;
   background-size: contain;
@@ -8,4 +9,8 @@
 
 .homeHeader {
   margin-bottom: 2em;
+}
+
+.wombat {
+  filter: invert(100%);
 }
