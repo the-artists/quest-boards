@@ -5,3 +5,6 @@
   background: url("images/Front.png") no-repeat center center fixed;
   background-size: fit;
 }
+.wombat {
+  filter: invert(100%);
+}

@@ -13,7 +13,7 @@ class NavBar extends React.Component {
     return (
       <Menu className="UHGreenBG" style={menuStyle} attached="top" borderless inverted>
         <Menu.Item position="" as={NavLink} activeClassName="" exact to="/">
-          <Image size='large' src="/images/QuestBoard.png"/>
+          <Image className="wombat" size='medium' src="/images/QuestBoard.png"/>
         </Menu.Item>
 
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
