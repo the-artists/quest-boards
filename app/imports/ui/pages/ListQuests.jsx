@@ -73,6 +73,10 @@ class ListQuests extends React.Component {
     ];
     return (
         <Container>
+          <div className='homeHeader'>
+            <h2>Available Quests:</h2>
+            <hr/>
+          </div>
           <Card.Group itemsPerRow={4}>
             {testData.map((quest, index) =>
               <Quest quest={quest} key={index}/>)}
