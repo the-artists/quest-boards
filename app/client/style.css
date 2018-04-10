@@ -6,3 +6,6 @@
   background: url('/images/QuestBoard.png') no-repeat center center fixed !important;
   background-size: contain;
 }
+.wombat {
+  filter: invert(100%);
+}
