@@ -11,15 +11,17 @@ class NavBar extends React.Component {
   render() {
     const menuStyle = { marginBottom: '30px', borderRadius: '0 0' };
     return (
-      <Menu position="centered" className="UHGreenBG" style={menuStyle} attached="top" borderless inverted>
-        <Menu.Item position="" as={NavLink} activeClassName="" exact to="/">
-          <Image size='large' src="/images/QuestBoard.png"/>
+      <Menu className="UHGreenBG" style={menuStyle} attached="top" borderless inverted>
+        <Menu.Item as={NavLink} activeClassName="" exact to="/">
+          <Image className="invert" size='medium' src="/images/QuestBoard.png"/>
         </Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Create Quest</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
         ) : ''}
 
+        <Menu.Item as={NavLink} activeClassName="active" exact to="/policy" key='policy'>Policy</Menu.Item>
+        
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
             <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
         ) : ''}
