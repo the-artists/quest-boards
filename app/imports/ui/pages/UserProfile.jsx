@@ -13,6 +13,7 @@ class UserProfile extends React.Component {
     firstName: 'Him', lastName: 'Boy', skills: 'wombo combo',
     image: 'https://philipmjohnson.github.io/images/philip2.jpeg',
     currentJobs: 'cat sitter',
+    owner: 'john@foo.com',
   },
   ];
 
