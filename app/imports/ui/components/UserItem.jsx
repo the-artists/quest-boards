@@ -11,11 +11,8 @@ class UserItem extends React.Component {
           <Card.Content>
             <Image floated='right' size='mini' src='https://philipmjohnson.github.io/images/philip2.jpeg' />
             <Card.Header>
-              Him Boy /*Replace with {this.props.profiles.firstName} {this.props.profiles.lastName}*/
+             {this.props.user.firstName} {this.props.user.lastName}*/
             </Card.Header>
-            <Card.Description>
-              <strong>Skills:</strong> Wombo Combo, Cat Sitting
-            </Card.Description>
           </Card.Content>
         </Card>
 
@@ -25,7 +22,7 @@ class UserItem extends React.Component {
 
 /** Require a document to be passed to this component. */
 UserItem.propTypes = {
-  stuff: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
