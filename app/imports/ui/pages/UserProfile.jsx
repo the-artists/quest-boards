@@ -1,21 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Image, Grid, List } from 'semantic-ui-react';
-import { Stuffs } from '/imports/api/stuff/stuff';
+import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import thisstyle from './userStyle.css';
+import thisStyle from './userStyle.css';
+import User from '/imports/ui/components/UserItem';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class UserProfile extends React.Component {
-
-  'profiles' = [{
-    firstName: 'Him', lastName: 'Boy', skills: 'wombo combo',
-    image: 'https://philipmjohnson.github.io/images/philip2.jpeg',
-    currentJobs: 'cat sitter',
-    owner: 'john@foo.com',
-  },
-  ];
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -35,7 +28,7 @@ class UserProfile extends React.Component {
                   <Grid.Column width={10}>
                     <Grid.Row>
                       <div align="center">
-                        <Header as="h2" textAlign="center">Him Boy</Header>
+                        <Header as="h2" textAlign="center">{this.props.users.lastName}</Header>
                       </div>
                     </Grid.Row>
                     <Grid.Row>
@@ -72,16 +65,16 @@ class UserProfile extends React.Component {
 
     /** Require an array of Stuff documents in the props. */
   UserProfile.propTypes = {
-    stuffs: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired,
     ready: PropTypes.bool.isRequired,
   };
 
     /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
   export default withTracker(() => {
     // Get access to Stuff documents.
-    const subscription = Meteor.subscribe('Stuff');
+    const subscription = Meteor.subscribe('Users');
     return {
-    stuffs: Stuffs.find({}).fetch(),
+    users: Users.find({}).fetch(),
     ready: subscription.ready(),
   };
   })(UserProfile);
