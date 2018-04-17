@@ -5,7 +5,7 @@ import User from '/imports/ui/components/User';
 import { Users } from '/imports/api/user/user';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import thisStyle from './userStyle.css';
+import '../components/userStyle.css';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class UserProfile extends React.Component {

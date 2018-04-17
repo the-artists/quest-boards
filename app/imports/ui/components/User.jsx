@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Image, Grid, Header, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import './userStyle.css';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class User extends React.Component {
@@ -9,21 +10,21 @@ class User extends React.Component {
     return (
         <Container>
           <Grid>
-            <Grid.Row>
+            <Grid.Row className="userCardBorder">
               <Grid.Column width={6}>
-                <Image src={this.props.user.image} size="medium"/>
+                <Image src={this.props.user.image} size="medium" className="userImage"/>
               </Grid.Column>
               <Grid.Column width={10}>
-                <Grid.Row>
-                  <div align="center">
-                    {this.props.user.firstName} {this.props.user.lastName}
+                <Grid.Row height="auto">
+                  <div align="center" className="userName">
+                    <Header as="h1">
+                      {this.props.user.firstName}{this.props.user.lastName}
+                    </Header>
                   </div>
                 </Grid.Row>
                 <Grid.Row>
-                  <Header as="h3">Skills</Header>
+                  <Header as="h3">Skills:</Header>
                   <List as='ul'>
-                    <List.Item as='li'>Wombo Combo</List.Item>
-                    <List.Item as='li'>Cat Sitting</List.Item>
                   </List>
                 </Grid.Row>
               </Grid.Column>
