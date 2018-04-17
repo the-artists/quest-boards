@@ -18,7 +18,7 @@ class User extends React.Component {
                 <Grid.Row height="auto">
                   <div align="center" className="userName">
                     <Header as="h1">
-                      {this.props.user.firstName}{this.props.user.lastName}
+                      {this.props.user.firstName} {this.props.user.lastName}
                     </Header>
                   </div>
                 </Grid.Row>
