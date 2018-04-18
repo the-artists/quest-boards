@@ -10,6 +10,7 @@ import UserProfile from '../pages/UserProfile';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
+import QuestInfo from '../pages/QuestInfo';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
@@ -26,6 +27,7 @@ class App extends React.Component {
             <NavBar/>
             <Switch>
               <Route exact path="/" component={ListQuests}/>
+              <Route path="/quest/:_id" component={QuestInfo}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/profile" component={UserProfile}/>
