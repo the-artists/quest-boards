@@ -41,6 +41,7 @@
       "firstName": "Him",
       "lastName": "Boy",
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
+      "skills":["Wombo Combo", "Cat Sitting" ],
       "owner": "john@foo.com"
     }
   ]

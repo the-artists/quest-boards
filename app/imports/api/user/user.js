@@ -10,6 +10,8 @@ const UserSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
   image: String,
+  skills: Array,
+  'skills.$': { type: String },
   owner: String,
 }, { tracker: Tracker });
 
