@@ -44,10 +44,12 @@ class ListQuests extends React.Component {
             <h2>Available Quests:</h2>
             <hr/>
           </div>
+          <div>
           <Card.Group itemsPerRow={4}>
             {this.props.quests.map((quest, index) =>
               <Quest quest={quest} key={index}/>)}
           </Card.Group>
+          </div>
         </Container>
     );
   }
