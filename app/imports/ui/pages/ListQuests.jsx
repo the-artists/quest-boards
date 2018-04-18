@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Card, Loader } from 'semantic-ui-react';
-import { Stuffs } from '/imports/api/stuff/stuff';
+import { Quests } from '/imports/api/quest/quest';
 import Quest from '/imports/ui/components/Quest';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -37,44 +37,7 @@ class ListQuests extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    const testData = [
-      {
-        title: 'TestQuest',
-        cost: '25.52',
-        status: 'open',
-        createdAt: this.getCurrentDate(),
-        description: 'testing our new quest system',
-        location: 'Holmes Hall 289',
-        requirements: 'Must know how to play the bass',
-      },
-      {
-        title: 'TestQuest2',
-        cost: -25,
-        status: 'pending',
-        createdAt: this.getCurrentDate(),
-        description: 'testing our new quest system',
-        location: 'Holmes Hall 289',
-        requirements: 'Must know how to play the bass',
-      },
-      {
-        title: 'TestQuest3',
-        cost: 50,
-        status: 'closed',
-        createdAt: this.getCurrentDate(),
-        description: 'testing our new quest system',
-        location: 'Holmes Hall 289',
-        requirements: 'Must know how to play the bass',
-      },
-      {
-        title: 'ReallyLongNameTestQuest4',
-        cost: 50,
-        status: 'closed',
-        createdAt: this.getCurrentDate(),
-        description: 'testing our new quest system',
-        location: 'Holmes Hall 289',
-        requirements: 'Must know how to play the bass',
-      },
-    ];
+
     return (
         <Container>
           <div className='smallMarginBot'>
@@ -82,7 +45,7 @@ class ListQuests extends React.Component {
             <hr/>
           </div>
           <Card.Group itemsPerRow={4}>
-            {testData.map((quest, index) =>
+            {this.props.quests.map((quest, index) =>
               <Quest quest={quest} key={index}/>)}
           </Card.Group>
         </Container>
@@ -99,9 +62,9 @@ ListQuests.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Stuff');
+  const subscription = Meteor.subscribe('Quests');
   return {
-    quests: Stuffs.find({}).fetch(),
+    quests: Quests.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(ListQuests);
