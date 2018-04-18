@@ -11,6 +11,7 @@ import ListStuffAdmin from '../pages/ListStuffAdmin';
 import EditQuest from '../pages/EditQuest';
 import NotFound from '../pages/NotFound';
 import QuestInfo from '../pages/QuestInfo';
+import Landing from '../pages/Landing';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
@@ -26,7 +27,8 @@ class App extends React.Component {
           <div>
             <NavBar/>
             <Switch>
-              <Route exact path="/" component={ListQuests}/>
+              <Route exact path="/" component={Landing} />
+              <Route path="/list" component={ListQuests}/>
               <Route path="/quest/:_id" component={QuestInfo}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
