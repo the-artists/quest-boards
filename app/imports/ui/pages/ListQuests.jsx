@@ -8,6 +8,10 @@ import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Quests. Use <Quest> to render each row. */
 class ListQuests extends React.Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   getCurrentDate() {
     let today = new Date();
     let dd = today.getDate();
@@ -73,7 +77,7 @@ class ListQuests extends React.Component {
     ];
     return (
         <Container>
-          <div className='homeHeader'>
+          <div className='smallMarginBot'>
             <h2>Available Quests:</h2>
             <hr/>
           </div>

@@ -7,8 +7,13 @@
   background-size: contain;
 }
 
-.homeHeader {
+.smallMarginBot {
   margin-bottom: 2em;
+}
+
+.landingCard .header,
+.landingCard .description{
+  color: white;
 }
 
 .invert {
