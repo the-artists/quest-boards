@@ -69,12 +69,10 @@ class AddQuest extends React.Component {
           <Header as="h2" textAlign="center" inverted>Add Quest</Header>
           <AutoForm ref={(ref) => { this.formRef = ref; }} schema = {QuestSchema} onSubmit={this.submit}>
             <Segment>
-              <TextField name='quest'/>
-              <TextField name='pay'/>
+              <TextField name='title'/>
+              <TextField name='cost'/>
               <TextField name='deadline'/>
               <TextField name='location'/>
-              <TextField name='contactInfo'/>
-              <TextField name='skills'/>
               <LongTextField name='description' />
               <SubmitField value='Submit'/>
               <ErrorsField/>

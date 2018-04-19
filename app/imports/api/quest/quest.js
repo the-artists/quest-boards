@@ -9,6 +9,7 @@ const Quests = new Mongo.Collection('Quests');
 const QuestSchema = new SimpleSchema({
   title: String,
   cost: Number,
+  deadline: String,
   status: String,
   createdAt: String,
   description: String,
