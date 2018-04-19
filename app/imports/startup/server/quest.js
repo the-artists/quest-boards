@@ -27,5 +27,5 @@ Meteor.publish('Quests', function publish() {
 
 /** This subscription publishes all open quests */
 Meteor.publish('Open', function publish() {
-  return Quests.find({ owner: 'none' });
+  return Quests.find({ status: 'open' });
 });
