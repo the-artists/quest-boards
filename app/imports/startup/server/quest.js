@@ -26,11 +26,7 @@ Meteor.publish('Quests', function publish() {
 });
 
 /** This subscription publishes all open quests */
-Meteor.publish('Open', function publish() {
-  return Quests.find({ status: 'open' });
+Meteor.publish('AllQuests', function publish() {
+  return Quests.find();
 });
 
-/** This subscription publishes all open quests */
-Meteor.publish('Pending', function publish() {
-  return Quests.find({ status: 'pending' });
-});

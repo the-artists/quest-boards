@@ -75,11 +75,10 @@ ListQuests.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Open');
-  const subscription2 = Meteor.subscribe('Pending');
+  const subscription = Meteor.subscribe('AllQuests');
   return {
     questsO: Quests.find({ status: 'open' }).fetch(),
     questsP: Quests.find({ status: 'pending' }).fetch(),
-    ready: subscription.ready() && subscription2.ready(),
+    ready: subscription.ready(),
   };
 })(ListQuests);
