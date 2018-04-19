@@ -37,18 +37,28 @@ class ListQuests extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-
+    const marginBot = { marginBottom: '1.2em' };
     return (
         <Container>
-          <div className='smallMarginBot'>
+          <div className='smallMarginBot' >
             <h2>Available Quests:</h2>
             <hr/>
           </div>
-          <div>
+          <div style={marginBot}>
           <Card.Group itemsPerRow={4}>
-            {this.props.quests.map((quest, index) =>
+            {this.props.questsO.map((quest, index) =>
               <Quest quest={quest} key={index}/>)}
           </Card.Group>
+          </div>
+          <div className='smallMarginBot' style={marginBot}>
+            <h2>Pending Quests:</h2>
+            <hr/>
+          </div>
+          <div style={marginBot}>
+            <Card.Group itemsPerRow={4}>
+              {this.props.questsP.map((quest, index) =>
+                  <Quest quest={quest} key={index}/>)}
+            </Card.Group>
           </div>
         </Container>
     );
@@ -57,7 +67,8 @@ class ListQuests extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 ListQuests.propTypes = {
-  quests: PropTypes.array.isRequired,
+  questsO: PropTypes.array.isRequired,
+  questsP: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -65,8 +76,10 @@ ListQuests.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Open');
+  const subscription2 = Meteor.subscribe('Pending');
   return {
-    quests: Quests.find({}).fetch(),
-    ready: subscription.ready(),
+    questsO: Quests.find({ status: 'open' }).fetch(),
+    questsP: Quests.find({ status: 'pending' }).fetch(),
+    ready: subscription.ready() && subscription2.ready(),
   };
 })(ListQuests);

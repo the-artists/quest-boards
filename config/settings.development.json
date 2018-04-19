@@ -51,7 +51,10 @@
   "defaultQuests": [
     {
       "title": "TestQuest",
-      "cost": 25.52,
+      "pay": 25.52,
+      "deadline": "4/24/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
       "status": "open",
       "createdAt": "Filler",
       "description": "testing our new quest system",
@@ -61,7 +64,10 @@
     },
     {
       "title": "TestQuest2",
-      "cost": -25,
+      "pay": -25,
+      "deadline": "4/24/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
       "status": "pending",
       "createdAt": "Filler",
       "description": "testing our new quest system",
@@ -71,7 +77,10 @@
     },
     {
       "title": "TestQuest3",
-      "cost": 50,
+      "pay": 50,
+      "deadline": "4/24/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
       "status": "closed",
       "createdAt": "Filler",
       "description": "testing our new quest system",
@@ -81,7 +90,10 @@
     },
     {
       "title": "ReallyLongNameTestQuest4",
-      "cost": 50,
+      "pay": 50,
+      "deadline": "4/24/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
       "status": "closed",
       "createdAt": "Filler",
       "description": "testing our new quest system",

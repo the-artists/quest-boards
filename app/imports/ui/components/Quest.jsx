@@ -49,7 +49,7 @@ class Quest extends React.Component {
             <Card.Header>
               {this.props.quest.title}
               <div style={floatRight}>
-                ${this.props.quest.cost} {this.props.quest.status}
+                ${this.props.quest.pay}
               </div>
             </Card.Header>
             <Card.Meta>

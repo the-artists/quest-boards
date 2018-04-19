@@ -56,9 +56,11 @@ class AddQuest extends React.Component {
   /** On submit, insert the data. */
 
  submit(data) {
-    const { quest, pay, deadline, location, contactInfo, skills, description } = data;
+    const { title, pay, deadline, location, contactInfo, skills, description } = data;
     const owner = Meteor.user().username;
-    Quests.insert({ quest, pay, deadline, location, contactInfo, skills, description, owner }, this.insertCallback);
+    const status = 'open';
+    Quests.insert({ title, pay, deadline, location,
+      contactInfo, skills, description, status, owner }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -69,7 +71,7 @@ class AddQuest extends React.Component {
           <Header as="h2" textAlign="center" inverted>Add Quest</Header>
           <AutoForm ref={(ref) => { this.formRef = ref; }} schema = {QuestSchema} onSubmit={this.submit}>
             <Segment>
-              <TextField name='quest'/>
+              <TextField name='title'/>
               <TextField name='pay'/>
               <TextField name='deadline'/>
               <TextField name='location'/>
@@ -78,7 +80,8 @@ class AddQuest extends React.Component {
               <LongTextField name='description' />
               <SubmitField value='Submit'/>
               <ErrorsField/>
-              <HiddenField name='owner'/>
+              <HiddenField name='owner' value='fakeuser@foo.com'/>
+              <HiddenField name='status' value='open'/>
             </Segment>
           </AutoForm>
         </Grid.Column>
