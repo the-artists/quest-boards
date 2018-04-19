@@ -41,7 +41,52 @@
       "firstName": "Him",
       "lastName": "Boy",
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
-      "skills":["Wombo Combo", "Cat Sitting" ],
+      "skills": [
+        "Wombo Combo",
+        "Cat Sitting"
+      ],
+      "owner": "john@foo.com"
+    }
+  ],
+  "defaultQuests": [
+    {
+      "title": "TestQuest",
+      "cost": 25.52,
+      "status": "open",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
+      "owner": "none"
+    },
+    {
+      "title": "TestQuest2",
+      "cost": -25,
+      "status": "pending",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
+      "owner": "john@foo.com"
+    },
+    {
+      "title": "TestQuest3",
+      "cost": 50,
+      "status": "closed",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
+      "owner": "john@foo.com"
+    },
+    {
+      "title": "ReallyLongNameTestQuest4",
+      "cost": 50,
+      "status": "closed",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
       "owner": "john@foo.com"
     }
   ]
