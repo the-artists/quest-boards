@@ -4,7 +4,7 @@ import { Quests } from '../../api/quest/quest.js';
 
 /** Initialize the database with a default data document. */
 function addData(data) {
-  console.log(`  Adding: ${data.lastName} (${data.owner})`);
+  console.log(`  Adding: ${data.title} (${data.owner})`);
   Quests.insert(data);
 }
 
@@ -25,10 +25,7 @@ Meteor.publish('Quests', function publish() {
   return this.ready();
 });
 
-/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
-Meteor.publish('UserAdmin', function publish() {
-  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Quests.find();
-  }
-  return this.ready();
+/** This subscription publishes all open quests */
+Meteor.publish('Open', function publish() {
+  return Quests.find({ owner: 'none' });
 });
