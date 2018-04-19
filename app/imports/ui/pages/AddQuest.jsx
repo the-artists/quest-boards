@@ -75,8 +75,6 @@ class AddQuest extends React.Component {
               <TextField name='pay'/>
               <TextField name='deadline'/>
               <TextField name='location'/>
-              <TextField name='contactInfo'/>
-              <TextField name='skills'/>
               <LongTextField name='description' />
               <SubmitField value='Submit'/>
               <ErrorsField/>
