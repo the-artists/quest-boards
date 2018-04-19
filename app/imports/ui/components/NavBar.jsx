@@ -38,7 +38,8 @@ class NavBar extends React.Component {
             <Dropdown text={this.props.currentUser} pointing="top right" icon={'user'}>
               <Dropdown.Menu>
                 {this.props.currentUser ? (
-                    [<Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
+                    [<Menu.Item as={NavLink}
+                                activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
                 ) : ''}
                 <Dropdown.Item icon="sign out" text="Sign Out" as={NavLink} exact to="/signout"/>
               </Dropdown.Menu>

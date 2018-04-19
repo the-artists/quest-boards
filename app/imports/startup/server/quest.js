@@ -29,3 +29,8 @@ Meteor.publish('Quests', function publish() {
 Meteor.publish('Open', function publish() {
   return Quests.find({ status: 'open' });
 });
+
+/** This subscription publishes all open quests */
+Meteor.publish('Pending', function publish() {
+  return Quests.find({ status: 'pending' });
+});

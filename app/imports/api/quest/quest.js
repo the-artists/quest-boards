@@ -8,13 +8,13 @@ const Quests = new Mongo.Collection('Quests');
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const QuestSchema = new SimpleSchema({
   title: String,
-  cost: Number,
+  pay: Number,
   deadline: String,
-  status: String,
-  createdAt: String,
-  description: String,
   location: String,
-  requirements: String,
+  contactInfo: String,
+  skills: String,
+  description: String,
+  status: String,
   owner: String,
 }, { tracker: Tracker });
 /** Attach this schema to the collection. */
