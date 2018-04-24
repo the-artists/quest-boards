@@ -11,7 +11,7 @@ class User extends React.Component {
         <Container>
           <Grid>
             <Grid.Row className="userCardBorder">
-              <Grid.Column width={6}>
+              <Grid.Column width={6} centered>
                 <Image src={this.props.user.image} size="medium" className="userImage"/>
               </Grid.Column>
               <Grid.Column width={10}>
@@ -24,7 +24,9 @@ class User extends React.Component {
                 </Grid.Row>
                 <Grid.Row>
                   <Header as="h3">Skills:</Header>
-                  <List as='ul'>
+                  <List as='ul' className='skillList'>
+                    {this.props.user.skills.map(skill =>
+                        <List.Item content={skill} as='li' className="skillListItem"/>)}
                   </List>
                 </Grid.Row>
               </Grid.Column>
