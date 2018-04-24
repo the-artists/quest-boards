@@ -38,7 +38,6 @@ class Quest extends React.Component {
   }
 
   render() {
-    const floatRight = { float: 'right' };
     return (
 
         <Card centered as={NavLink} exact to={`/quest/${this.props.quest._id}`}
@@ -46,12 +45,9 @@ class Quest extends React.Component {
           <Card.Content>
             <Card.Header>
               {this.props.quest.title}
-              <div style={floatRight}>
-                ${this.props.quest.pay}
-              </div>
             </Card.Header>
             <Card.Meta>
-              Opened {this.props.quest.createdAt}
+              ${this.props.quest.pay}
             </Card.Meta>
             <Card.Description>
               {this.props.quest.description}<br/><br/>
