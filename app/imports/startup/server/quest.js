@@ -18,19 +18,6 @@ if (Quests.find().count() === 0) {
 
 /** This subscription publishes only the documents associated with the logged in Quest */
 Meteor.publish('Quests', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Quests.find({ owner: username });
-  }
-  return this.ready();
+  return Quests.find({});
 });
 
-/** This subscription publishes all open quests */
-Meteor.publish('Open', function publish() {
-  return Quests.find({ status: 'open' });
-});
-
-/** This subscription publishes all open quests */
-Meteor.publish('Pending', function publish() {
-  return Quests.find({ status: 'pending' });
-});
