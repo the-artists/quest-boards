@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -38,22 +38,16 @@ class Quest extends React.Component {
   }
 
   render() {
-    const floatRight = { float: 'right' };
-    // For use in calculating 'open for x days' of Card.Meta
-    // let timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    // var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return (
-        <Card centered style={this.getBorderColor(this.props.quest.status)}>
-          <Card.Content>
 
+        <Card centered as={NavLink} exact to={`/quest/${this.props.quest._id}`}
+              style={this.getBorderColor(this.props.quest.status)}>
+          <Card.Content>
             <Card.Header>
               {this.props.quest.title}
-              <div style={floatRight}>
-                ${this.props.quest.pay}
-              </div>
             </Card.Header>
             <Card.Meta>
-              Opened {this.props.quest.createdAt}
+              ${this.props.quest.pay}
             </Card.Meta>
             <Card.Description>
               {this.props.quest.description}<br/><br/>

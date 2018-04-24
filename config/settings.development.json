@@ -58,13 +58,12 @@
   ],
   "defaultQuests": [
     {
-      "title": "TestQuest",
+      "title": "Play with the UHM Orchestra",
       "pay": 25.52,
       "deadline": "4/24/2018",
       "contactInfo": "(808) 226-2931",
       "skills": "None",
       "status": "open",
-      "deadline": "April 11, 2013",
       "createdAt": "Filler",
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
@@ -72,17 +71,16 @@
       "owner": "none"
     },
     {
-      "title": "TestQuest2",
-      "pay": -25,
+      "title": "Paint Holmes Hall 244",
+      "pay": 0,
       "deadline": "4/24/2018",
       "contactInfo": "(808) 226-2931",
       "skills": "None",
       "status": "pending",
-      "deadline": "April 11, 2013",
       "createdAt": "Filler",
-      "description": "testing our new quest system",
+      "description": "The room Holmes Hall 244 is old and in need of a touch up",
       "location": "Holmes Hall 289",
-      "requirements": "Must know how to play the bass",
+      "requirements": "None",
       "owner": "john@foo.com"
     },
     {
@@ -92,7 +90,6 @@
       "contactInfo": "(808) 226-2931",
       "skills": "None",
       "status": "closed",
-      "deadline": "April 11, 2013",
       "createdAt": "Filler",
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
@@ -106,7 +103,6 @@
       "contactInfo": "(808) 226-2931",
       "skills": "None",
       "status": "closed",
-      "deadline": "April 11, 2013",
       "createdAt": "Filler",
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
