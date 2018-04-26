@@ -16,7 +16,7 @@ if (Quests.find().count() === 0) {
   }
 }
 
-/** This subscription publishes only the documents associated with the logged in Quest */
+/** This subscription publishes all open quests */
 Meteor.publish('Quests', function publish() {
   return Quests.find();
 });

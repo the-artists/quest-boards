@@ -76,10 +76,9 @@ ListQuests.propTypes = {
 export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Quests');
-  const subscription2 = Meteor.subscribe('Quests');
   return {
     questsO: Quests.find({ status: 'open' }).fetch(),
     questsP: Quests.find({ status: 'pending' }).fetch(),
-    ready: subscription.ready() && subscription2.ready(),
+    ready: subscription.ready(),
   };
 })(ListQuests);
