@@ -82,6 +82,8 @@ class AddQuest extends React.Component {
               <ErrorsField/>
               <HiddenField name='owner' value='fakeuser@foo.com'/>
               <HiddenField name='status' value='open'/>
+              <HiddenField name='ownerId' value='fakeId'/>
+              <HiddenField name='' value/>
             </Segment>
           </AutoForm>
         </Grid.Column>

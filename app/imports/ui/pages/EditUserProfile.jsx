@@ -19,7 +19,7 @@ class EditUserProfile extends React.Component {
   /** On successful submit, insert the data. */
   submit(data) {
     const { name, quantity, condition, _id } = data;
-    Users.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+    Users.update(_id, { $set: { firstName, lastName, skills, image } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -37,12 +37,13 @@ class EditUserProfile extends React.Component {
             <Header as="h2" textAlign="center">Edit UserProfile</Header>
             <AutoForm schema={UserSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
-                <TextField name='name'/>
-                <NumField name='quantity' decimal={false}/>
-                <SelectField name='condition'/>
+                <TextField name='firstName'/>
+                <TextField name='lastName'/>
+                <TextField name='skills'/>
+                <TextField name='image'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' />
+                <HiddenField name='owner'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
