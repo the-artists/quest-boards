@@ -68,7 +68,9 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
-      "owner": "none"
+      "assignee" : "none",
+      "completed": "no",
+      "owner": "john@foo.com"
     },
     {
       "title": "Paint Holmes Hall 244",
@@ -81,6 +83,8 @@
       "description": "The room Holmes Hall 244 is old and in need of a touch up",
       "location": "Holmes Hall 289",
       "requirements": "None",
+      "assignee": "john@foo.com",
+      "completed": "no",
       "owner": "john@foo.com"
     },
     {
@@ -94,6 +98,8 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
+      "assignee": "john@foo.com",
+      "completed": "yes",
       "owner": "john@foo.com"
     },
     {
@@ -107,6 +113,8 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
+      "assignee": "john@foo.com",
+      "completed": "yes",
       "owner": "john@foo.com"
     }
   ]

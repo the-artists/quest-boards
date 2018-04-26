@@ -15,6 +15,8 @@ const QuestSchema = new SimpleSchema({
   skills: String,
   description: String,
   status: String,
+  assignee: String,
+  completed: String,
   owner: String,
 }, { tracker: Tracker });
 /** Attach this schema to the collection. */
