@@ -15,9 +15,16 @@ const QuestSchema = new SimpleSchema({
   skills: String,
   description: String,
   status: String,
-  assignee: String,
-  completed: String,
+  assignee: {
+    type: String,
+    required: false,
+  },
+  assigneeId: {
+    type: String,
+    required: false,
+  },
   owner: String,
+  ownerId: String,
 }, { tracker: Tracker });
 /** Attach this schema to the collection. */
 Quests.attachSchema(QuestSchema);
