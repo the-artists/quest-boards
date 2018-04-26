@@ -70,7 +70,8 @@
       "requirements": "Must know how to play the bass",
       "assignee" : "none",
       "completed": "no",
-      "owner": "john@foo.com"
+      "owner": "john@foo.com",
+      "ownerId" : "test"
     },
     {
       "title": "Paint Holmes Hall 244",
@@ -85,7 +86,8 @@
       "requirements": "None",
       "assignee": "john@foo.com",
       "completed": "no",
-      "owner": "john@foo.com"
+      "owner": "john@foo.com",
+      "ownerId" : "test"
     },
     {
       "title": "TestQuest3",
@@ -100,7 +102,8 @@
       "requirements": "Must know how to play the bass",
       "assignee": "john@foo.com",
       "completed": "yes",
-      "owner": "john@foo.com"
+      "owner": "john@foo.com",
+      "ownerId" : "test"
     },
     {
       "title": "ReallyLongNameTestQuest4",
@@ -115,7 +118,8 @@
       "requirements": "Must know how to play the bass",
       "assignee": "john@foo.com",
       "completed": "yes",
-      "owner": "john@foo.com"
+      "owner": "john@foo.com",
+      "ownerId" : "test"
     }
   ]
 }
