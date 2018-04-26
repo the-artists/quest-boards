@@ -27,4 +27,12 @@
 
 .userImage {
   border-radius: 25px;
+  padding-top: 2px;
+}
+
+.userQuests {
+  border: 2px solid;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 20px;
 }

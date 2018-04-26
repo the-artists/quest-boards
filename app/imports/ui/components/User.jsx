@@ -25,26 +25,10 @@ class User extends React.Component {
                 <Grid.Row>
                   <Header as="h3">Skills:</Header>
                   <List as='ul' className='skillList'>
-                    {this.props.user.skills.map(skill =>
-                        <List.Item content={skill} as='li' className="skillListItem"/>)}
+                    {this.props.user.skills.map((skill, index) =>
+                        <List.Item content={skill} key={index} as='li' className="skillListItem"/>)}
                   </List>
                 </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <Header as="h3">Completed Jobs</Header>
-                <List as='ul'>
-                  <List.Item as='li'>Saved Metropolis</List.Item>
-                  <List.Item as='li'>Ate 12 Hotdogs in 5 Minutes</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={8}>
-                <Header as="h3">Current Jobs</Header>
-                <List as='ul'>
-                  <List.Item as='li'>Food Boy</List.Item>
-                  <List.Item as='li'>Obtain Rank 1 in Love Live!</List.Item>
-                </List>
               </Grid.Column>
             </Grid.Row>
           </Grid>
