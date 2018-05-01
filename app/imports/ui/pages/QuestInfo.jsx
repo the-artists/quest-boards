@@ -21,6 +21,7 @@ class QuestInfo extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center"> {this.props.doc.title} </Header>
+            <div>{this.props.doc.description}</div>
             <Link to={`/edit/${this.props.doc._id}`}>Edit</Link>
           </Grid.Column>
         </Grid>
