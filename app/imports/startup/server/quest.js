@@ -16,8 +16,45 @@ if (Quests.find().count() === 0) {
   }
 }
 
+function getCurrentDate() {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = `0${dd}`;
+  }
+
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
+
+  today = `${mm}/${dd}/${yyyy}`;
+  return today;
+}
+
+function updateStatus() {
+  const Results = Quests.find();
+  const today = getCurrentDate();
+
+  Results.forEach(function (quest) {
+    const id = {
+      id: `${quest.id}`,
+    };
+    const questDeadline = quest.deadline.value;
+    const status = {
+      status: 'closed',
+    };
+    if (questDeadline < today) {
+      Quests.update(id, { $set: { status } });
+    }
+  });
+}
+
 /** This subscription publishes all open quests */
 Meteor.publish('Quests', function publish() {
+  updateStatus();
   return Quests.find();
 });
 
