@@ -41,9 +41,8 @@ function updateStatus() {
   Results.forEach(function (quest) {
     let questDeadline = quest.deadline;
     if (questDeadline[1] === '/') questDeadline = `0${questDeadline}`;
-    console.log(`Quest Deadline ${questDeadline}`);
-    if (quest.assignee === 'none' || quest.assignee === 'None') console.log("Empty");
-    else {
+    // console.log(`Quest Deadline ${questDeadline}`);
+    if (quest.assignee !== 'none' && quest.assignee !== 'None') {
       Quests.update(
           { _id: `${quest._id}` },
           { $set: {
