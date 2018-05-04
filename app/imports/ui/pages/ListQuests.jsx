@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 /** Renders a table containing all of the Quests. Use <Quest> to render each row. */
 class ListQuests extends React.Component {
   componentDidMount() {
-    this.updateStatus();
     window.scrollTo(0, 0);
   }
 

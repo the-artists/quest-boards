@@ -35,19 +35,30 @@ function getCurrentDate() {
 }
 
 function updateStatus() {
-  const Results = Quests.find();
+  const Results = Quests.find({status: 'open'});
   const today = getCurrentDate();
 
   Results.forEach(function (quest) {
-    const id = {
-      id: `${quest.id}`,
-    };
-    const questDeadline = quest.deadline.value;
-    const status = {
-      status: 'closed',
-    };
+    let questDeadline = quest.deadline;
+    if (questDeadline[1] === '/') questDeadline = `0${questDeadline}`;
+    console.log(`Quest Deadline ${questDeadline}`);
+    if (quest.assignee === 'none' || quest.assignee === 'None') console.log("Empty");
+    else {
+      Quests.update(
+          { _id: `${quest._id}` },
+          { $set: {
+              status: 'pending',
+            } },
+      );
+    }
+    // Quest Deadline
     if (questDeadline < today) {
-      Quests.update(id, { $set: { status } });
+      Quests.update(
+          { _id: `${quest._id}` },
+          { $set: {
+            status: 'closed',
+          } },
+      );
     }
   });
 }
