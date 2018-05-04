@@ -1,13 +1,33 @@
 import React from 'react';
-import { Grid, Loader, Header } from 'semantic-ui-react';
+import { Card, Grid, Loader, Header } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
+import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
 /** Renders the Page for editing a single document. */
 class QuestInfo extends React.Component {
+  requestQuest(document) {
+    if (Meteor.userId()) {
+      console.log(`UserID: ${Meteor.userId()}`);
+      const username = Meteor.users.findOne(Meteor.userId()).username;
+      Quests.update(
+          { _id: `${document._id}` },
+          {
+            $set: {
+              assignee: `${username}`,
+            },
+          },
+          (error) => (error ?
+              Bert.alert({ type: 'danger', message: `Request failed: ${error.message}` }) :
+              Bert.alert({ type: 'success', message: 'Request succeeded' })),
+      );
+    } else {
+      Bert.alert({ type: 'danger', message: 'Request failed, Could not find USERID' });
+    }
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
@@ -16,13 +36,43 @@ class QuestInfo extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
+    const colorWhite = { color: 'white' };
+    const descriptionBox = { fontSize: '36px', marginBottom: '40px', padding: '10px 0' };
     return (
         <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center"> {this.props.doc.title} </Header>
-            <div>{this.props.doc.description}</div>
-            <Link to={`/edit/${this.props.doc._id}`}>Edit</Link>
-          </Grid.Column>
+          {this.props.doc.owner === Meteor.users.findOne(Meteor.userId()).username ?
+            <Grid.Row>
+              <Card centered raised={true} className='UHGreenBG'
+                    as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
+                <Card.Content>
+                  <Card.Header style={colorWhite}>
+                    Edit Quest!
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+            </Grid.Row> : null }
+          <Grid.Row>
+            <Grid.Column>
+              <Header as="h2" textAlign="left"> {this.props.doc.title} </Header>
+              <h4>
+              Pay: ${this.props.doc.pay}<br />
+              Deadline: {this.props.doc.deadline}<br />
+              Contact Info: {this.props.doc.contactInfo}<br />
+              Required Skills: {this.props.doc.skills}<br />
+              Status: Currently {this.props.doc.status}<br />
+              Location: {this.props.doc.location}<br />
+              Currently Assigned To: {this.props.doc.assignee}<br />
+              Owner: {this.props.doc.owner}
+              </h4>
+              <h4>Description:</h4>
+              <hr/>
+              <div style={descriptionBox}>{this.props.doc.description}</div>
+            </Grid.Column>
+          </Grid.Row>
+
+          {this.props.doc.status === 'open' ? <Grid.Row>
+            <button type="submit" onClick={() => { this.requestQuest(this.props.doc); }}>Request</button>
+          </Grid.Row> : null }
         </Grid>
     );
   }

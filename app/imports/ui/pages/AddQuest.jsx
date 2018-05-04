@@ -60,8 +60,9 @@ class AddQuest extends React.Component {
     const owner = Meteor.user().username;
     const ownerId = Meteor.user()._id;
     const status = 'open';
+    const assignee = 'none';
     Quests.insert({ title, pay, deadline, location,
-      contactInfo, skills, description, status, owner, ownerId }, this.insertCallback);
+      contactInfo, skills, description, status, assignee, owner, ownerId }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
