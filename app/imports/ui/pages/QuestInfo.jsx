@@ -16,7 +16,6 @@ class QuestInfo extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
-    console.log(this.props.doc.title);
     return (
         <Grid container centered>
           <Grid.Column>
@@ -40,7 +39,6 @@ QuestInfo.propTypes = {
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const questId = match.params._id;
-  console.log(questId);
   // Get access to Quest documents.
   const subscription = Meteor.subscribe('Quests');
   return {
