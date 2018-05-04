@@ -50,6 +50,7 @@ class AddUser extends React.Component {
                 <TextField name='lastName' />
                 <TextField name='image' />
                 <TextField name='lastName' />
+                <TextField name='skills' />
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>

@@ -17,8 +17,9 @@ class EditQuest extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, quantity, condition, _id } = data;
-    Quests.update(_id, { $set: { name, quantity, condition } }, (error) => (error ?
+    const { title, pay, deadline, location, contactInfo, skills, description, _id } = data;
+    Quests.update(_id, { $set: { title, pay, deadline, location,
+        contactInfo, skills, description } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -36,16 +37,18 @@ class EditQuest extends React.Component {
             <Header as="h2" textAlign="center">Edit Quest</Header>
             <AutoForm schema={QuestSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
-                <TextField name='quest'/>
+                <TextField name='title'/>
                 <TextField name='pay'/>
                 <TextField name='deadline'/>
                 <TextField name='location'/>
                 <TextField name='contactInfo'/>
                 <TextField name='skills'/>
-                <LongTextField name='description' />
+                <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
-                <HiddenField name='owner' />
+                <HiddenField name='owner' value='fakeuser@foo.com'/>
+                <HiddenField name='status' value='open'/>
+                <HiddenField name='ownerId' value='asdafa'/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -54,7 +57,7 @@ class EditQuest extends React.Component {
   }
 }
 
-/** Require the presence of a Quest document in the props object. Uniforms adds 'model' to the props, which we use. */
+  /** Require the presence of a Quest document in the props object. Uniforms adds 'model' to the props, which we use. */
 EditQuest.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
@@ -64,11 +67,11 @@ EditQuest.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const documentId = match.params._id;
+  const questId = match.params._id;
   // Get access to Quest documents.
-  const subscription = Meteor.subscribe('Quest');
+  const subscription = Meteor.subscribe('Quests');
   return {
-    doc: Quests.findOne(documentId),
+    doc: Quests.findOne(questId),
     ready: subscription.ready(),
   };
 })(EditQuest);

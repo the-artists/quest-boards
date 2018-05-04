@@ -52,3 +52,39 @@ export default withTracker(() => {
     ready: subscription.ready(),
   };
 })(ListStuff);
+
+submit(data) {
+  const { title, pay, deadline, location, contactInfo, skills, description, _id } = data;
+  Quests.update(_id, { $set: { title, pay, deadline, location,
+      contactInfo, skills, description } }, (error) => (error ?
+      Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
+      Bert.alert({ type: 'success', message: 'Update succeeded' })));
+}
+
+
+
+
+console.log(this.props.doc.title);
+return (
+    <Grid container centered>
+      <Grid.Column>
+        <Header as="h2" textAlign="center">Edit Quest</Header>
+        <AutoForm schema={QuestSchema} onSubmit={this.submit} model={this.props.doc._id}>
+          <Segment>
+            <TextField name='title'/>
+            <TextField name='pay'/>
+            <TextField name='deadline'/>
+            <TextField name='location'/>
+            <TextField name='contactInfo'/>
+            <TextField name='skills'/>
+            <LongTextField name='description'/>
+            <SubmitField value='Submit'/>
+            <ErrorsField/>
+            <HiddenField name='owner' value='fakeuser@foo.com'/>
+            <HiddenField name='status' value='open'/>
+            <HiddenField name='ownerId' value='asdafa'/>
+          </Segment>
+        </AutoForm>
+      </Grid.Column>
+    </Grid>
+);
