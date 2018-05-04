@@ -70,9 +70,18 @@ class QuestInfo extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
-          {this.props.doc.status === 'open' ? <Grid.Row>
-            <button type="submit" onClick={() => { this.requestQuest(this.props.doc); }}>Request</button>
-          </Grid.Row> : null }
+          {this.props.doc.status === 'open' ?
+              <Grid.Row>
+                <Card centered raised={true} className='UHGreenBG'
+                      onClick={() => { this.requestQuest(this.props.doc); }}
+                      as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
+                  <Card.Content>
+                    <Card.Header style={colorWhite}>
+                      Request!
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+              </Grid.Row> : null }
         </Grid>
     );
   }
