@@ -3,6 +3,7 @@ import { Grid, Loader, Header } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /** Renders the Page for editing a single document. */
@@ -19,6 +20,8 @@ class QuestInfo extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center"> {this.props.doc.title} </Header>
+            <div>{this.props.doc.description}</div>
+            <Link to={`/edit/${this.props.doc._id}`}>Edit</Link>
           </Grid.Column>
         </Grid>
     );

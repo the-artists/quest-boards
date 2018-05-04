@@ -4,6 +4,7 @@ import { Container, Card, Loader } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import Quest from '/imports/ui/components/Quest';
 import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Quests. Use <Quest> to render each row. */
@@ -43,6 +44,7 @@ class ListQuests extends React.Component {
                   <Quest quest={quest} key={index}/>)}
             </Card.Group>
           </div>
+
         </Container>
     );
   }
