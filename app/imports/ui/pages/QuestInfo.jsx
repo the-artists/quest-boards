@@ -38,9 +38,14 @@ class QuestInfo extends React.Component {
   renderPage() {
     const colorWhite = { color: 'white' };
     const descriptionBox = { fontSize: '36px', marginBottom: '40px', padding: '10px 0' };
+    const userID = Meteor.userId();
+    let username = '';
+    if (userID) {
+      username = Meteor.users.findOne(userID).username;
+    } else username = '';
     return (
         <Grid container centered>
-          {this.props.doc.owner === Meteor.users.findOne(Meteor.userId()).username ?
+          {this.props.doc.owner === username ?
             <Grid.Row>
               <Card centered raised={true} className='UHGreenBG'
                     as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
