@@ -8,6 +8,7 @@ import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Meteor } from 'meteor/meteor';
+import { Redirect } from 'react-router-dom';
 
 /** Renders the Page for adding a document. */
 class AddUser extends React.Component {
@@ -19,6 +20,7 @@ class AddUser extends React.Component {
     this.render = this.render.bind(this);
     this.insertCallback = this.insertCallback.bind(this);
     this.formRef = null;
+    this.state = { redirectToReferer: false };
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -36,10 +38,14 @@ class AddUser extends React.Component {
     const { firstName, lastName, image, skills } = data;
     const owner = Meteor.user().username;
     Users.insert({ firstName, lastName, image, skills, owner }, this.insertCallback);
+    this.setState({ error: '', redirectToReferer: true });
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
+    if (this.state.redirectToReferer) {
+      return <Redirect to='/profile'/>;
+    }
     return (
         <Grid container centered>
           <Grid.Column>
@@ -49,7 +55,6 @@ class AddUser extends React.Component {
                 <TextField name='firstName'/>
                 <TextField name='lastName' />
                 <TextField name='image' />
-                <TextField name='lastName' />
                 <TextField name='skills' />
                 <SubmitField value='Submit'/>
                 <ErrorsField/>

@@ -6,6 +6,7 @@ import UserQuests from '/imports/ui/components/UserQuests';
 import { Users } from '/imports/api/user/user';
 import { Quests } from '/imports/api/quest/quest';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../components/userStyle.css';
 
@@ -48,6 +49,7 @@ class UserProfile extends React.Component {
                   </Card.Group>
                 </Container>
               </Grid.Column>
+              <Link to={`/edituser/${this.props.users._id}`}>Edit</Link>
             </Grid.Row>
           </Grid>
         </Container>
@@ -59,17 +61,21 @@ class UserProfile extends React.Component {
 UserProfile.propTypes = {
   users: PropTypes.array.isRequired,
   quests: PropTypes.array.isRequired,
+  doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(() => {
+export default withTracker(({match}) => {
   // Get access to Stuff documents.
+  const userId = match.params._id;
   const subscription = Meteor.subscribe('Users');
   const subscription2 = Meteor.subscribe('Quests');
   return {
     users: Users.find({}).fetch(),
     quests: Quests.find({}).fetch(),
+    doc: Users.findOne(userId),
     ready: subscription.ready() && subscription2.ready(),
+
   };
 })(UserProfile);
