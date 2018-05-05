@@ -19,6 +19,8 @@ class UserProfile extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    const aUser = this.props.users[0].owner;
+    console.log(aUser);
     return (
         <Container width="200px">
           <Grid>
@@ -32,9 +34,9 @@ class UserProfile extends React.Component {
                 <Container align="center" className="userQuests">
                   <Header as="h2">Completed Quests</Header>
                   <Card.Group itemsPerRow={1}>
-                    {this.props.quests.map((quest, index) =>
-                        <UserQuests quest={quest} key={index}
-                        />)}
+                    {this.props.quests.map((quest, index) => ((quest.assignee === aUser && quest.status === 'closed') ?
+                        <UserQuests quest={quest} key={index}/> : ''))
+                    }
                   </Card.Group>
                 </Container>
               </Grid.Column>
@@ -42,9 +44,9 @@ class UserProfile extends React.Component {
                 <Container align="center" className="userQuests">
                   <Header as="h2">Current Quests</Header>
                   <Card.Group itemsPerRow={1}>
-                    {this.props.quests.map((quest, index) =>
-                        <UserQuests quest={quest} key={index}
-                        />)}
+                    {this.props.quests.map((quest, index) => ((quest.assignee === aUser && quest.status === 'pending') ?
+                        <UserQuests quest={quest} key={index}/> : ''))
+                    }
                   </Card.Group>
                 </Container>
               </Grid.Column>
@@ -59,21 +61,17 @@ class UserProfile extends React.Component {
 UserProfile.propTypes = {
   users: PropTypes.array.isRequired,
   quests: PropTypes.array.isRequired,
-  doc: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(({ match }) => {
+export default withTracker(() => {
   // Get access to Stuff documents.
-  const userId = match.params._id;
   const subscription = Meteor.subscribe('Users');
   const subscription2 = Meteor.subscribe('Quests');
   return {
     users: Users.find({}).fetch(),
     quests: Quests.find({}).fetch(),
-    doc: Users.findOne(userId),
     ready: subscription.ready() && subscription2.ready(),
-
   };
 })(UserProfile);
