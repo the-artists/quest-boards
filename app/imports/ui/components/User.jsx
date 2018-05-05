@@ -29,6 +29,7 @@ class User extends React.Component {
                   <Header as="h3">Skills:</Header>
                   <div align="center">
                     <Header as="h5">{this.props.user.skills}</Header>
+                    <Link to={`/addskill/${this.props.user._id}`}><Icon name="plus" align='right'/>Add Skills</Link>
                   </div>
                 </Grid.Row>
               </Grid.Column>
