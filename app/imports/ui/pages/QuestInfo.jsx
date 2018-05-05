@@ -3,7 +3,7 @@ import { Card, Grid, Loader, Header } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -23,6 +23,27 @@ class QuestInfo extends React.Component {
           (error) => (error ?
               Bert.alert({ type: 'danger', message: `Request failed: ${error.message}` }) :
               Bert.alert({ type: 'success', message: 'Request succeeded' })),
+      );
+    } else {
+      Bert.alert({ type: 'danger', message: 'Request failed, Could not find USERID' });
+    }
+  }
+
+  doneQuest(document) {
+    if (Meteor.userId()) {
+      console.log(`UserID: ${Meteor.userId()}`);
+      const username = Meteor.users.findOne(Meteor.userId()).username;
+      Quests.update(
+          { _id: `${document._id}` },
+          {
+            $set: {
+              assignee: `${username}`,
+              status: 'closed',
+            },
+          },
+          (error) => (error ?
+              Bert.alert({ type: 'danger', message: `Failed: ${error.message}` }) :
+              Bert.alert({ type: 'success', message: 'Finished Quest' })),
       );
     } else {
       Bert.alert({ type: 'danger', message: 'Request failed, Could not find USERID' });
@@ -79,15 +100,30 @@ class QuestInfo extends React.Component {
               <Grid.Row>
                 <Card centered raised={true} className='UHGreenBG'
                       onClick={() => { this.requestQuest(this.props.doc); }}
-                      as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
+                      as={NavLink} exact to={'/list'}>
                   <Card.Content>
                     <Card.Header style={colorWhite}>
                       Request!
                     </Card.Header>
                   </Card.Content>
                 </Card>
-              </Grid.Row> : null }
-        </Grid>
+              </Grid.Row> : null
+          }
+
+          {(this.props.doc.status === 'pending') && (this.props.doc.assignee === username) ?
+              <Grid.Row>
+                <Card centered raised={true} className='UHGreenBG'
+                      onClick={() => { this.doneQuest(this.props.doc); }}
+                      as={NavLink} exact to={'/list'}>
+                  <Card.Content>
+                    <Card.Header style={colorWhite}>
+                      Done!
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+              </Grid.Row> : null
+          }
+          </Grid>
     );
   }
 }
