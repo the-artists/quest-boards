@@ -7,16 +7,32 @@
 .userCardBorder {
   border: 2px solid;
   border-radius: 25px;
+  max-height: 250px;
 }
 
 .userName {
   padding: 10px;
 }
 
-.userSkills {
-  padding-top: 30px;
-}
+/* allow room for 3 columns */
+.skillList
+{
+  width: 20em;
+}  /* float & allow room for the widest item */
+.skillList .skillListItem
+{
+  float: left;
+  width: 10em;
+}  /* stop the float */
 
 .userImage {
   border-radius: 25px;
+  padding-top: 2px;
+}
+
+.userQuests {
+  border: 2px solid;
+  border-radius: 25px;
+  margin: 10px;
+  padding: 20px;
 }

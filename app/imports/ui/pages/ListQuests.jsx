@@ -4,30 +4,13 @@ import { Container, Card, Loader } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import Quest from '/imports/ui/components/Quest';
 import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Quests. Use <Quest> to render each row. */
 class ListQuests extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
-  }
-
-  getCurrentDate() {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    const yyyy = today.getFullYear();
-
-    if (dd < 10) {
-      dd = `0${dd}`;
-    }
-
-    if (mm < 10) {
-      mm = `0${mm}`;
-    }
-
-    today = `${mm}/${dd}/${yyyy}`;
-    return today;
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -60,6 +43,7 @@ class ListQuests extends React.Component {
                   <Quest quest={quest} key={index}/>)}
             </Card.Group>
           </div>
+
         </Container>
     );
   }
@@ -75,11 +59,10 @@ ListQuests.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Open');
-  const subscription2 = Meteor.subscribe('Pending');
+  const subscription = Meteor.subscribe('Quests');
   return {
     questsO: Quests.find({ status: 'open' }).fetch(),
     questsP: Quests.find({ status: 'pending' }).fetch(),
-    ready: subscription.ready() && subscription2.ready(),
+    ready: subscription.ready(),
   };
 })(ListQuests);

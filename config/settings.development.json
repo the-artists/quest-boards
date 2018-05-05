@@ -43,6 +43,14 @@
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
       "skills": [
         "Wombo Combo",
+        "Cat Sitting",
+        "Wombo Combo",
+        "Cat Sitting",
+        "Wombo Combo",
+        "Cat Sitting",
+        "Wombo Combo",
+        "Cat Sitting",
+        "Wombo Combo",
         "Cat Sitting"
       ],
       "owner": "john@foo.com"
@@ -52,7 +60,7 @@
     {
       "title": "Play with the UHM Orchestra",
       "pay": 25.52,
-      "deadline": "4/24/2018",
+      "deadline": "04/24/2018",
       "contactInfo": "(808) 226-2931",
       "skills": "None",
       "status": "open",
@@ -60,7 +68,42 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
-      "owner": "none"
+      "assignee" : "none",
+      "completed": "no",
+      "owner": "john@foo.com",
+      "ownerId": "0"
+    },
+    {
+      "title": "Play with the UHM Band",
+      "pay": 52.25,
+      "deadline": "04/25/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
+      "status": "open",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
+      "assignee" : "none",
+      "completed": "no",
+      "owner": "john@foo.com",
+      "ownerId": "0"
+    },
+    {
+      "title": "SING with the UHM Choir",
+      "pay": 52.25,
+      "deadline": "07/25/2018",
+      "contactInfo": "(808) 226-2931",
+      "skills": "None",
+      "status": "open",
+      "createdAt": "Filler",
+      "description": "testing our new quest system",
+      "location": "Holmes Hall 289",
+      "requirements": "Must know how to play the bass",
+      "assignee" : "none",
+      "completed": "no",
+      "owner": "john@foo.com",
+      "ownerId": "0"
     },
     {
       "title": "Paint Holmes Hall 244",
@@ -73,7 +116,10 @@
       "description": "The room Holmes Hall 244 is old and in need of a touch up",
       "location": "Holmes Hall 289",
       "requirements": "None",
-      "owner": "john@foo.com"
+      "assignee": "john@foo.com",
+      "completed": "no",
+      "owner": "john@foo.com",
+      "ownerId": "0"
     },
     {
       "title": "TestQuest3",
@@ -86,7 +132,10 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
-      "owner": "john@foo.com"
+      "assignee": "john@foo.com",
+      "completed": "yes",
+      "owner": "john@foo.com",
+      "ownerId": "0"
     },
     {
       "title": "ReallyLongNameTestQuest4",
@@ -99,7 +148,10 @@
       "description": "testing our new quest system",
       "location": "Holmes Hall 289",
       "requirements": "Must know how to play the bass",
-      "owner": "john@foo.com"
+      "assignee": "john@foo.com",
+      "completed": "yes",
+      "owner": "john@foo.com",
+      "ownerId": "0"
     }
   ]
 }

@@ -17,23 +17,56 @@ if (Quests.find().count() === 0) {
   }
 }
 
-/** This subscription publishes only the documents associated with the logged in Quest */
-Meteor.publish('Quests', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Quests.find({ owner: username });
+function getCurrentDate() {
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  const yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = `0${dd}`;
   }
-  return this.ready();
-});
+
+  if (mm < 10) {
+    mm = `0${mm}`;
+  }
+
+  today = `${mm}/${dd}/${yyyy}`;
+  return today;
+}
+
+function updateStatus() {
+  const Results = Quests.find({status: 'open'});
+  const today = getCurrentDate();
+
+  Results.forEach(function (quest) {
+    let questDeadline = quest.deadline;
+    if (questDeadline[1] === '/') questDeadline = `0${questDeadline}`;
+    // console.log(`Quest Deadline ${questDeadline}`);
+    if (quest.assignee !== 'none' && quest.assignee !== 'None') {
+      Quests.update(
+          { _id: `${quest._id}` },
+          { $set: {
+              status: 'pending',
+            } },
+      );
+    }
+    // Quest Deadline
+    if (questDeadline < today) {
+      Quests.update(
+          { _id: `${quest._id}` },
+          { $set: {
+            status: 'closed',
+          } },
+      );
+    }
+  });
+}
 
 /** This subscription publishes all open quests */
-Meteor.publish('Open', function publish() {
-  return Quests.find({ status: 'open' });
-});
-
-/** This subscription publishes all open quests */
-Meteor.publish('Pending', function publish() {
-  return Quests.find({ status: 'pending' });
+Meteor.publish('Quests', function publish() {
+  updateStatus();
+  return Quests.find();
 });
 
 /** Search through quests */
@@ -59,3 +92,4 @@ Meteor.publish('quests', function (search) {
 
   return Quests.find(query, projection);
 });
+

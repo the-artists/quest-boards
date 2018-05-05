@@ -15,6 +15,8 @@ import Landing from '../pages/Landing';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
+import EditUserProfile from '../pages/EditUserProfile';
+import AddUser from '../pages/AddUserProfile';
 import AddQuest from '../pages/AddQuest';
 import ListQuests from '../pages/ListQuests';
 import Policy from '../pages/Policy';
@@ -34,10 +36,12 @@ class App extends React.Component {
               <Route path="/search" component={search}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
+              <ProtectedRoute path="/adduser" component={AddUser}/>
               <ProtectedRoute path="/profile" component={UserProfile}/>
               <Route path="/policy" component={Policy}/>
               <ProtectedRoute path="/add" component={AddQuest}/>
               <ProtectedRoute path="/edit/:_id" component={EditQuest}/>
+              <ProtectedRoute path="/edituser/:_id" component={EditUserProfile}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
