@@ -3,7 +3,7 @@ import { Card, Grid, Loader, Header } from 'semantic-ui-react';
 import { Quests } from '/imports/api/quest/quest';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
@@ -29,6 +29,27 @@ class QuestInfo extends React.Component {
     }
   }
 
+  doneQuest(document) {
+    if (Meteor.userId()) {
+      console.log(`UserID: ${Meteor.userId()}`);
+      const username = Meteor.users.findOne(Meteor.userId()).username;
+      Quests.update(
+          { _id: `${document._id}` },
+          {
+            $set: {
+              assignee: `${username}`,
+              status: 'closed',
+            },
+          },
+          (error) => (error ?
+              Bert.alert({ type: 'danger', message: `Failed: ${error.message}` }) :
+              Bert.alert({ type: 'success', message: 'Finished Quest' })),
+      );
+    } else {
+      Bert.alert({ type: 'danger', message: 'Request failed, Could not find USERID' });
+    }
+  }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader>Getting data</Loader>;
@@ -46,28 +67,28 @@ class QuestInfo extends React.Component {
     return (
         <Grid container centered>
           {this.props.doc.owner === username ?
-            <Grid.Row>
-              <Card centered raised={true} className='UHGreenBG'
-                    as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
-                <Card.Content>
-                  <Card.Header style={colorWhite}>
-                    Edit Quest!
-                  </Card.Header>
-                </Card.Content>
-              </Card>
-            </Grid.Row> : null }
+              <Grid.Row>
+                <Card centered raised={true} className='UHGreenBG'
+                      as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
+                  <Card.Content>
+                    <Card.Header style={colorWhite}>
+                      Edit Quest!
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+              </Grid.Row> : null}
           <Grid.Row>
             <Grid.Column>
               <Header as="h2" textAlign="left"> {this.props.doc.title} </Header>
               <h4>
-              Pay: ${this.props.doc.pay}<br />
-              Deadline: {this.props.doc.deadline}<br />
-              Contact Info: {this.props.doc.contactInfo}<br />
-              Required Skills: {this.props.doc.skills}<br />
-              Status: Currently {this.props.doc.status}<br />
-              Location: {this.props.doc.location}<br />
-              Currently Assigned To: {this.props.doc.assignee}<br />
-              Owner: {this.props.doc.owner}
+                Pay: ${this.props.doc.pay}<br/>
+                Deadline: {this.props.doc.deadline}<br/>
+                Contact Info: {this.props.doc.contactInfo}<br/>
+                Required Skills: {this.props.doc.skills}<br/>
+                Status: Currently {this.props.doc.status}<br/>
+                Location: {this.props.doc.location}<br/>
+                Currently Assigned To: {this.props.doc.assignee}<br/>
+                Owner: {this.props.doc.owner}
               </h4>
               <h4>Description:</h4>
               <hr/>
@@ -75,18 +96,38 @@ class QuestInfo extends React.Component {
             </Grid.Column>
           </Grid.Row>
 
-          {this.props.doc.status === 'open' ?
+          {(this.props.doc.status === 'open') && (username !== '') ?
               <Grid.Row>
                 <Card centered raised={true} className='UHGreenBG'
-                      onClick={() => { this.requestQuest(this.props.doc); }}
-                      as={NavLink} exact to={`/edit/${this.props.doc._id}`}>
+                      onClick={() => {
+                        this.requestQuest(this.props.doc);
+                      }}
+                      as={NavLink} exact to={'/list'}>
                   <Card.Content>
                     <Card.Header style={colorWhite}>
                       Request!
                     </Card.Header>
                   </Card.Content>
                 </Card>
-              </Grid.Row> : null }
+              </Grid.Row>
+              : null
+          }
+
+          {(this.props.doc.status === 'pending') && (this.props.doc.assignee === username) ?
+              <Grid.Row>
+                <Card centered raised={true} className='UHGreenBG'
+                      onClick={() => {
+                        this.doneQuest(this.props.doc);
+                      }}
+                      as={NavLink} exact to={'/list'}>
+                  <Card.Content>
+                    <Card.Header style={colorWhite}>
+                      Done!
+                    </Card.Header>
+                  </Card.Content>
+                </Card>
+              </Grid.Row> : null
+          }
         </Grid>
     );
   }

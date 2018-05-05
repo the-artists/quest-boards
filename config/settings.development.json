@@ -41,18 +41,7 @@
       "firstName": "Him",
       "lastName": "Boy",
       "image": "https://philipmjohnson.github.io/images/philip2.jpeg",
-      "skills": [
-        "Wombo Combo",
-        "Cat Sitting",
-        "Wombo Combo",
-        "Cat Sitting",
-        "Wombo Combo",
-        "Cat Sitting",
-        "Wombo Combo",
-        "Cat Sitting",
-        "Wombo Combo",
-        "Cat Sitting"
-      ],
+      "skills": "Wombo Combo, Fly",
       "owner": "john@foo.com"
     }
   ],

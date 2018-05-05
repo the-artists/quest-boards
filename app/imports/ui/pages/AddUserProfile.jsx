@@ -3,6 +3,7 @@ import { Users, UserSchema } from '/imports/api/user/user';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
@@ -55,7 +56,7 @@ class AddUser extends React.Component {
                 <TextField name='firstName'/>
                 <TextField name='lastName' />
                 <TextField name='image' />
-                <TextField name='skills' />
+                <LongTextField name='skills'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='owner' value='fakeuser@foo.com'/>
