@@ -20,7 +20,6 @@ import AddUser from '../pages/AddUserProfile';
 import AddQuest from '../pages/AddQuest';
 import ListQuests from '../pages/ListQuests';
 import Policy from '../pages/Policy';
-
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {

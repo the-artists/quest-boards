@@ -15,7 +15,7 @@ class NavBar extends React.Component {
         <Menu.Item as={NavLink} activeClassName="" exact to="/">
           <Image className="invert" size='medium' src="/images/QuestBoard.png"/>
         </Menu.Item>
-        <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Avaialable Quests</Menu.Item>
+        <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Available Quests</Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Create Quest</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/profile" key='profile'>Profile</Menu.Item>]
