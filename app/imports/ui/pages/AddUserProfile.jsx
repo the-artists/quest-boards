@@ -49,7 +49,7 @@ class AddUser extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add User</Header>
+            <Header as="h2" textAlign="center">Create Your Profile</Header>
             <AutoForm ref={(ref) => { this.formRef = ref; }} schema={UserSchema} onSubmit={this.submit}>
               <Segment>
                 <TextField name='firstName'/>
