@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { check, Match } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
 import { Quests } from '../../api/quest/quest.js';
 
@@ -66,5 +67,29 @@ function updateStatus() {
 Meteor.publish('Quests', function publish() {
   updateStatus();
   return Quests.find();
+});
+
+/** Search through quests */
+Meteor.publish('quests', function (search) {
+  check(search, Match.OneOf(String, null, undefined));
+
+  let query = {};
+  const projection = { limit: 10, sort: { title: 1 } };
+
+  if (search) {
+    const regex = new RegExp(search, 'i');
+
+    query = {
+      $or: [
+        { title: regex },
+        { skills: regex },
+        { owner: regex },
+      ],
+    };
+
+    projection.limit = 100;
+  }
+
+  return Quests.find(query, projection);
 });
 
