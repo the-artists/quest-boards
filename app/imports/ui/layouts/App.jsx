@@ -20,6 +20,8 @@ import AddUser from '../pages/AddUserProfile';
 import AddQuest from '../pages/AddQuest';
 import ListQuests from '../pages/ListQuests';
 import Policy from '../pages/Policy';
+import search from '../../startup/client/templates/search';
+
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
@@ -31,6 +33,7 @@ class App extends React.Component {
               <Route exact path="/" component={Landing} />
               <Route path="/list" component={ListQuests}/>
               <Route path="/quest/:_id" component={QuestInfo}/>
+              <Route path="/search" component={search}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/adduser" component={AddUser}/>
