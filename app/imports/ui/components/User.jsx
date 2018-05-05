@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Image, Grid, Header, List } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Icon, List, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import './userStyle.css';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -13,6 +13,9 @@ class User extends React.Component {
             <Grid.Row className="userCardBorder">
               <Grid.Column width={6} centered>
                 <Image src={this.props.user.image} size="medium" className="userImage"/>
+                <div align="center">
+                <Link to={`/edituser/${this.props.user._id}`}><Icon name="write" align='right'/>Edit Profile</Link>
+                </div>
               </Grid.Column>
               <Grid.Column width={10}>
                 <Grid.Row height="auto">
